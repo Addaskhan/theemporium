@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Website</title>
+    <style>
+        body {
+background:black;
+            font-family: Arial, sans-serif;
+            text-align: ;
+        }
+   header {
+      background-color: #333333;
+      padding: 20px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+        .made-by {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        h1 {
+            color: white;
+	font-family:algerian;
+        }
+
+	#logo{
+      position: fixed;
+      opacity:0.3;
+      top: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+	border-radius:50pt;
+      transition: transform 0.3s ease;
+    
+	}
+
+
+        #searchInput {
+		border-radius:8px;
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        #tilesContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tile {
+	background:white;
+            width: 300px;
+            margin: 10px;
+	    border-radius:10px;
+            border: 3px solid #ccc;
+            padding: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            
+        }
+
+        .tile:hover {
+            transform: scale(1.05);
+        }
+
+        .tile img {
+            max-width: 100%;
+            height:45% auto;
+        }
+
+        .tile h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .tile p {
+            color: #777;
+        }
+
+        .long-tile {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .long-tile:hover {
+            background-color: #f5f5f5;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+	.remove-button{
+	
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+}
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        .made-by {
+            color: #ffffff;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .animated {
+            animation: fadeIn 1s;
+        }
+    </style>
+</head>
+<body bgcolor="">
+   <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+    <div class="made-by">
+        <p>Made by Addas</p>
+    </div>
+    <center>
+    <h1>WELLCOME TO EMPORIUM</h1>
+<img id="logo" src="up.png" width="100px" height="100px">
+
+
+
+
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterItems()">
+    <br><br>
+
+    <div id="tilesContainer" class="animated">
+        <div class="tile">
+            <h2>Item 1</h2>
+	<a href=form.html>
+            <img src="item1.jpg" alt="Item 1"></a>
+            <p>Description of Item 1</p>
+            <p>Price: $10</p>
+            <p>Item Number: 001</p>
+            <button class="buy-button" onclick="email()">Buy</button>
+        </div>
+
+        <div class="tile">
+            <h2>Item 1</h2>
+<a href=form.html>
+            <img src="item1.jpg" alt="Item 1"></a>
+            <p>Description of Item 1</p>
+            <p>Price: $10</p>
+            <p>Item Number: 002</p>
+            <button class="buy-button" onclick="email()">Buy</button>
+        </div>
+
+
+    </div>
+
+    <br>
+    <button class="buy-button" onclick="addNewTile()">Add to List</button>
+
+    <script>
+        function filterItems() {
+            var input, filter, tiles, tile, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            tiles = document.getElementById("tilesContainer").children;
+
+            for (i = 0; i < tiles.length; i++) {
+                tile = tiles[i];
+                txtValue = tile.textContent || tile.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tile.style.display = "";
+                } else {
+                    tile.style.display = "none";
+                }
+            }
+        }
+
+        function sendEmail(itemName) {
+            var email = "muhammadaddas.1232@gmail.com";
+            // Send email logic here using email variable and itemName parameter
+        }
+
+        function addNewTile() {
+            var password = prompt("Enter password:");
+            if (password === "13852006") {
+                var itemName = prompt("Enter item name:");
+                var itemDescription = prompt("Enter item description:");
+                var itemImage = prompt("Enter item image URL:");
+                var itemPrice = prompt("Enter item price:");
+                var itemNumber = prompt("Enter item number:");
+
+                var newTile = document.createElement("div");
+                newTile.classList.add("tile");
+
+                var tileContent = `
+                    <h2>${itemName}</h2>
+                    <img src="${itemImage}" alt="${itemName}">
+                    <p>${itemDescription}</p>
+                    <p>Price: ${itemPrice}</p>
+                    <p>Item Number: ${itemNumber}</p>
+                    <button class="buy-button" onclick="sendEmail('')"></button>
+                `;
+
+                newTile.innerHTML = tileContent;
+                document.getElementById("tilesContainer").appendChild(newTile);
+            } else {
+                alert("Incorrect password!");
+            }
+        }
+    // Retrieve saved tiles from localStorage
+    var savedTiles = JSON.parse(localStorage.getItem('tiles')) || [];
+
+    // Function to save tiles to localStorage
+    function saveTiles() {
+        localStorage.setItem('tiles', JSON.stringify(savedTiles));
+    }
+
+    // Function to load saved tiles from localStorage
+    function loadSavedTiles() {
+        var tilesContainer = document.getElementById('tilesContainer');
+        tilesContainer.innerHTML = ''; // Clear existing tiles
+
+        savedTiles.forEach(function(tileData) {
+            var newTile = createTile(tileData);
+            tilesContainer.appendChild(newTile);
+        });
+    }
+
+    // Function to create a new tile element
+    function createTile(tileData) {
+        var newTile = document.createElement("div");
+        newTile.classList.add("tile");
+
+        var tileContent = `
+            <h2>${tileData.name}</h2>
+            <img src="${tileData.image}" alt="${tileData.name}">
+            <p>${tileData.description}</p>
+            <p>Price: ${tileData.price}</p>
+            <p>Item Number: ${tileData.number}</p>
+            <button class="buy-button" onclick="sendEmail('${tileData.name}')"></button>
+        `;
+
+        newTile.innerHTML = tileContent;
+        return newTile;
+    }
+
+    // Load saved tiles on page load
+    window.onload = loadSavedTiles;
+
+    // Function to add a new tile
+    function addNewTile() {
+        var password = prompt("Enter password:");
+        if (password === "13852006") {
+            var itemName = prompt("Enter item name:");
+            var itemDescription = prompt("Enter item description:");
+            var itemImage = prompt("Enter item image URL:");
+            var itemPrice = prompt("Enter item price:");
+            var itemNumber = prompt("Enter item number:");
+
+            var newTileData = {
+                name: itemName,
+                description: itemDescription,
+                image: itemImage,
+                price: itemPrice,
+                number: itemNumber
+            };
+
+            var newTile = createTile(newTileData);
+            document.getElementById("tilesContainer").appendChild(newTile);
+
+            savedTiles.push(newTileData);
+            saveTiles();
+        } else {
+            alert("Incorrect password!");
+        }
+    }
+
+ // Retrieve saved tiles from localStorage
+    var savedTiles = JSON.parse(localStorage.getItem('tiles')) || [];
+
+    // Function to save tiles to localStorage
+    function saveTiles() {
+        localStorage.setItem('tiles', JSON.stringify(savedTiles));
+    }
+
+    // Function to load saved tiles from localStorage
+    function loadSavedTiles() {
+        var tilesContainer = document.getElementById('tilesContainer');
+        tilesContainer.innerHTML = ''; // Clear existing tiles
+
+        savedTiles.forEach(function(tileData) {
+            var newTile = createTile(tileData);
+            tilesContainer.appendChild(newTile);
+        });
+    }
+
+    // Function to create a new tile element
+    function createTile(tileData) {
+        var newTile = document.createElement("div");
+        newTile.classList.add("tile");
+        newTile.setAttribute("data-number", tileData.number);
+
+        var tileContent = `
+            <h2>${tileData.name}</h2>
+            <img src="${tileData.image}" alt="${tileData.name}">
+            <p>${tileData.description}</p>
+            <p>Price: ${tileData.price}</p>
+            <p>Item Number: ${tileData.number}</p>
+<a href=form.html>
+            <button class="buy-button" onclick="sendEmail('${tileData.name}', '${tileData.number}')">Buy</button></a>
+            <button class="remove-button" onclick="removeItem('${tileData.number}')">Remove</button>
+        `;
+
+        newTile.innerHTML = tileContent;
+        return newTile;
+    }
+
+    // Load saved tiles on page load
+    window.onload = loadSavedTiles;
+
+    // Function to save new tile and send email
+    function addNewTile() {
+        var password = prompt("Enter password:");
+        if (password === "13852006") {
+            var itemName = prompt("Enter item name:");
+            var itemDescription = prompt("Enter item description:");
+            var itemImage = prompt("Enter item image URL:");
+            var itemPrice = prompt("Enter item price:");
+            var itemNumber = prompt("Enter item number:");
+
+            var newTileData = {
+                name: itemName,
+                description: itemDescription,
+                image: itemImage,
+                price: itemPrice,
+                number: itemNumber
+            };
+
+            var newTile = createTile(newTileData);
+            document.getElementById("tilesContainer").appendChild(newTile);
+
+            savedTiles.push(newTileData);
+            saveTiles();
+        } else {
+            alert("Incorrect password!");
+        }
+    }
+
+
+
+    // Function to bind remove functionality to the "Remove" buttons
+    function bindRemoveButtons() {
+        var removeButtons = document.getElementsByClassName('remove-button');
+        for (var i = 0; i < removeButtons.length; i++) {
+            removeButtons[i].onclick = function() {
+                var itemNumber = this.parentNode.getAttribute('data-number');
+
+                var password = prompt("Enter password:");
+                if (password === "13852006") {
+                    // Remove item from savedTiles array
+                    savedTiles = savedTiles.filter(function(tile) {
+                        return tile.number !== itemNumber;
+                    });
+
+                    // Remove item from DOM
+                    var tileElement = document.querySelector(`[data-number="${itemNumber}"]`);
+                    if (tileElement) {
+                        tileElement.parentNode.removeChild(tileElement);
+                    }
+
+                    saveTiles();
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+        }
+    }
+
+    // Bind remove functionality to the "Remove" buttons on page load
+    window.onload = function() {
+        loadSavedTiles();
+        bindRemoveButtons();
+    };
+    
+    function sendEmail(itemName, itemNumber) { var form = document.getElementById("orderForm"); form.elements["itemName"].value = itemName; form.elements["itemNumber"].value = itemNumber; }
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    // Add item to the shared list
+    function addItem() {
+      const itemInput = document.getElementById('itemInput');
+      const item = itemInput.value.trim();
+
+      if (item !== '') {
+        socket.emit('addItem', item);
+        itemInput.value = '';
+      }
+
+      return false;
+    }
+
+    // Display the updated list
+    function updateList(items) {
+      const itemList = document.getElementById('itemList');
+      itemList.innerHTML = '';
+
+      items.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        itemList.appendChild(listItem);
+      });
+    }
+
+    // Listen for list updates from the server
+    socket.on('updateList', (items) => {
+      updateList(items);
+    });
+
+    // Submit the form to add an item
+    document.getElementById('addItemForm').addEventListener('submit', addItem);
+  </script>
+    <p class="made-by"><b>Made by Addas</b></p>
+    </center>
+</body>
+</html>
