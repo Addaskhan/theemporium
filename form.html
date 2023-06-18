@@ -1,120 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contact Form</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
- header {
-      background-color: #333333;
+  <title>Order Form</title>
+  <style>
+    /* Style the form container */
+    .form-container {
+      max-width:50%;
+      margin: 0 auto;
       padding: 20px;
+      height: 505pt;
+      background-color: #e7e7e7;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
+    /* Style the form fields */
+    .form-field {
+      margin-bottom: 15px;
     }
 
-    nav ul li {
-      display: inline;
-      margin-right: 10px;
+    .form-field label {
+      display: block;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-weight: bold;
+      margin-bottom: 5px;
     }
 
-    nav ul li a {
-      color: #ffffff;
-      text-decoration: none;
+    .form-field input[type="text"],
+    .form-field select {
+      width: 95%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
-    main {
-      padding: 20px;
+    /* Style the order button */
+    .order-button {
+      background-color: #4CAF50;
+      color: white;
+      float: right;
+      padding: 10px 20px;
+      border: none;
+      margin-right: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .additional-text{
+      font-weight:bold ;
     }
 
-    section {
-      margin-bottom: 30px;
+
+    .order-button:hover {
+      background-color: #45a049;
     }
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        @media screen and (max-width: 480px) {
-            .container {
-                max-width: 100%;
-            }
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
+  <div class="form-container">
+    <h1 align="center" style="font-weight: bold;">PLACE ORDER</h1>
+    <form id="order-form">
+      <div class="form-field">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-field">
+        <label for="father-name">Father's Name:</label>
+        <input type="text" id="father-name" name="father-name"  required>
+      </div>
+
+      <div class="form-field">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" placeholder="Nasapi Thana, Palai-khpa thana ..." required>
+      </div>
+
+      <div class="form-field">
+        <label for="phone-no">Phone No:</label>
+        <input type="text" id="phone-no" name="phone-no" placeholder="03123456789" required>
+      </div>
+
+      <div class="form-field">
+        <label for="item-no">Item No:</label>
+        <input type="text" id="item-no" name="item-no" placeholder="004, 003 ..." required>
+      </div>
+
+      <div class="form-field">
+        <label for="item-name">Item Name:</label>
+        <input type="text" id="item-name" name="item-name" placeholder="Cake, Pizza  ..." required>
+      </div>
+
+      <div class="form-field">
         
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-    <div class="container">
-        <h2>Contact Form</h2>
-        <form action="mailto:muhammadaddas.1232@gmail.com" method="post" enctype="text/plain">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <label for="nearby-place">Nearby Populer Places:</label>
+        <input type="text" id="item-name" name="item-name" placeholder="On The Right side of school (name)..." required>
+      
+      </div>
 
-            <label for="fatherName">Father's Name:</label>
-            <input type="text" id="fatherName" name="fatherName" required>
+      <div class="additional-text">
+        You can also add a note in email for more information.
+      </div>
+      <div class="form-field">
+        <button class="order-button" type="submit">Place Order</button>
+      </div>
+    </form>
+  </div>
 
-            <label for="itemName">Item Name:</label>
-            <input type="text" id="itemName" name="itemName" required>
+  <script>
+    const form = document.getElementById("order-form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      sendOrderData();
+    });
 
-            <label for="itemNo">Item Number:</label>
-            <input type="text" id="itemNo" name="itemNo" required>
+    function sendOrderData() {
+      const name = document.getElementById("name").value;
+      const fatherName = document.getElementById("father-name").value;
+      const address = document.getElementById("address").value;
+      const phoneNo = document.getElementById("phone-no").value;
+      const itemNo = document.getElementById("item-no").value;
+      const itemName = document.getElementById("item-name").value;
+      const nearbyPopularName = document.getElementById("nearby-popular-name").value;
 
-            <label for="place">Place:</label>
-            <input type="text" id="place" name="place" required>
+      // Send the data via email using a service or API
+      const emailData = {
+        name,
+        fatherName,
+        address,
+        phoneNo,
+        itemNo,
+        itemName,
+        nearbyPopularName
+      };
 
-            <label for="address">Address:</label>
-            <textarea id="address" name="address" required></textarea>
+      // Replace the email address with the appropriate one
+      const email = "muhammadaddas.1232@gmail.com";
+      const subject = "New Order";
+      const body = JSON.stringify(emailData);
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
-
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <p style="text-align: center; margin-top: 20px;">Made by Addas</p>
+      window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    }
+  </script>
+  
 </body>
 </html>

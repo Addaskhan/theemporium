@@ -1,0 +1,478 @@
+
+<html>
+
+
+<head>
+    
+<title>Shopping Website</title>
+   
+ <style>
+       
+ body {
+background:rgba(00,00,00,0.04);
+            
+	font-family: Arial, sans-serif;
+ 
+        text-align: center;
+        }
+
+ 
+ h1 {
+            
+	color: white;
+
+	font-family:algerian;
+ 
+       }
+
+#topi{
+
+	padding-left:5px;
+	
+border-radius:30px;
+
+}
+
+
+.tab{
+
+	padding-right:5px;
+	
+display:flex;
+	
+background-color:none;
+	
+padding-top:10px;
+	
+	float:right;
+
+}
+
+		
+
+.tab a{
+	
+padding:10px;
+	
+position:sticky;
+top:2px;
+
+text-decoration:none;
+color:black;
+width:auto;
+font-size:20px;
+text-align:center;
+height:auto;
+}
+.tab a:hover{
+color:#ffffff;
+border-radius:15px;
+background-color:#000000;
+}
+	#logo{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+
+      width: 80px;
+      height: 70px;
+	border-radius:60pt;
+      transition: transform 0.3s ease;
+    
+	}
+
+
+        #searchInput {
+	float:left;
+		border-radius:8px;
+            width: 300px;
+            height: 35px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        #tilesContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tile {
+	background:white;
+        width: -webkit-fill-available;
+	
+
+            align: left;
+            margin: 10px;
+	    border-radius:10px;
+            border: 3px solid #ccc;
+            padding: 10px;
+    text-align-last: start;
+height: fit-content;
+            transition: transform 0.3s ease;
+         background-color:rgba(88,66,55,0.2);   
+        }
+
+        .tile:hover {
+            transform: scale(1.02);
+        }
+
+        .tile img {
+            max-width: 100%;
+            height:100%;
+        }
+
+        .tile h2 {
+    text-align-last: auto;
+border-radius:10pt;
+		    background-color: #0099ff;
+	float:center;
+
+            margin-top: 0;
+            color: #fff;
+        }
+#pa{
+display:flex;
+
+}
+        .tile p img {
+            color: black;
+	
+display:inline;
+        }
+
+        .long-tile {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .long-tile:hover {
+            background-color: #f5f5f5;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+	.remove-button{
+	
+            background-color: #4CAF50;
+            color: #fff;
+		float:right;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+}
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        .made-by {
+            color: #333;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .animated {
+            animation: fadeIn 1s;
+        }
+    </style>
+</head>
+<body bgcolor="">
+    <h1 style="color:#002300;">WELLCOME TO EMPORIUM</h1>
+<img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS58mf2Hs55-dVnnyprfrbMQtCo_JJSvNFdmQ&amp;usqp=CAU" width="150px" height="100px">
+
+<center><div class="tab" align="">
+<a href="#" id="an">HOME</a>
+<a href="#" id="an">GALLERY</a>
+<a href="#" id="an">SHOP</a>
+
+<a href="#" id="an">GALLERY</a>
+<a href="#" id="an" style="">SHOP</a></div></center>
+
+
+
+
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterItems()">
+    <br><br><br><hr><br><br>
+
+    <div id="tilesContainer" class="animated"><div class="tile" data-number="null" style="">
+            <h2>item 1</h2>
+            <img src="up.png" alt="item 1">
+            <p>not yet</p>
+            <p>Price: null</p>
+            <p>Item Number: null</p>
+<a href="form.html">
+            <button class="buy-button" onclick="sendEmail('item 1', 'null')">Buy</button></a>
+            <button class="remove-button" onclick="removeItem('null')">Remove</button>
+        </div><div class="tile" data-number="null" style="">
+            <h2>null</h2>
+            <img src="null" alt="null">
+            <p>null</p>
+            <p>Price: null</p>
+            <p>Item Number: null</p>
+<a href="form.html">
+            <button class="buy-button" onclick="sendEmail('null', 'null')">Buy</button></a>
+            <button class="remove-button" onclick="removeItem('null')">Remove</button>
+        </div></div>
+
+    <br>
+    <button class="buy-button" onclick="addNewTile()">Add to List</button>
+
+    <script>
+        function filterItems() {
+            var input, filter, tiles, tile, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            tiles = document.getElementById("tilesContainer").children;
+
+            for (i = 0; i < tiles.length; i++) {
+                tile = tiles[i];
+                txtValue = tile.textContent || tile.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tile.style.display = "";
+                } else {
+                    tile.style.display = "none";
+                }
+            }
+        }
+
+        function sendEmail(itemName) {
+            var email = "muhammadaddas.1232@gmail.com";
+            // Send email logic here using email variable and itemName parameter
+        }
+
+        function addNewTile() {
+            var password = prompt("Enter password:");
+            if (password === "13852006") {
+                var itemName = prompt("Enter item name:");
+                var itemDescription = prompt("Enter item description:");
+                var itemImage = prompt("Enter item image URL:");
+                var itemPrice = prompt("Enter item price:");
+                var itemNumber = prompt("Enter item number:");
+
+                var newTile = document.createElement("div");
+                newTile.classList.add("tile");
+
+                var tileContent = `
+                    <h2>${itemName}</h2>
+                    <img src="${itemImage}" alt="${itemName}">
+                    <p>${itemDescription}</p>
+                    <p>Price: ${itemPrice}</p>
+                    <p>Item Number: ${itemNumber}</p>
+                    <button class="buy-button" onclick="sendEmail('')"></button>
+                `;
+
+                newTile.innerHTML = tileContent;
+                document.getElementById("tilesContainer").appendChild(newTile);
+            } else {
+                alert("Incorrect password!");
+            }
+        }
+    // Retrieve saved tiles from localStorage
+    var savedTiles = JSON.parse(localStorage.getItem('tiles')) || [];
+
+    // Function to save tiles to localStorage
+    function saveTiles() {
+        localStorage.setItem('tiles', JSON.stringify(savedTiles));
+    }
+
+    // Function to load saved tiles from localStorage
+    function loadSavedTiles() {
+        var tilesContainer = document.getElementById('tilesContainer');
+        tilesContainer.innerHTML = ''; // Clear existing tiles
+
+        savedTiles.forEach(function(tileData) {
+            var newTile = createTile(tileData);
+            tilesContainer.appendChild(newTile);
+        });
+    }
+
+    // Function to create a new tile element
+    function createTile(tileData) {
+        var newTile = document.createElement("div");
+        newTile.classList.add("tile");
+
+        var tileContent = `
+            <h2>${tileData.name}</h2>
+            <img src="${tileData.image}" alt="${tileData.name}">
+            <p>${tileData.description}</p>
+            <p>Price: ${tileData.price}</p>
+            <p>Item Number: ${tileData.number}</p>
+            <button class="buy-button" onclick="sendEmail('${tileData.name}')"></button>
+        `;
+
+        newTile.innerHTML = tileContent;
+        return newTile;
+    }
+
+    // Load saved tiles on page load
+    window.onload = loadSavedTiles;
+
+    // Function to add a new tile
+    function addNewTile() {
+        var password = prompt("Enter password:");
+        if (password === "13852006") {
+            var itemName = prompt("Enter item name:");
+            var itemDescription = prompt("Enter item description:");
+            var itemImage = prompt("Enter item image URL:");
+            var itemPrice = prompt("Enter item price:");
+            var itemNumber = prompt("Enter item number:");
+
+            var newTileData = {
+                name: itemName,
+                description: itemDescription,
+                image: itemImage,
+                price: itemPrice,
+                number: itemNumber
+            };
+
+            var newTile = createTile(newTileData);
+            document.getElementById("tilesContainer").appendChild(newTile);
+
+            savedTiles.push(newTileData);
+            saveTiles();
+        } else {
+            alert("Incorrect password!");
+        }
+    }
+
+ // Retrieve saved tiles from localStorage
+    var savedTiles = JSON.parse(localStorage.getItem('tiles')) || [];
+
+    // Function to save tiles to localStorage
+    function saveTiles() {
+        localStorage.setItem('tiles', JSON.stringify(savedTiles));
+    }
+
+    // Function to load saved tiles from localStorage
+    function loadSavedTiles() {
+        var tilesContainer = document.getElementById('tilesContainer');
+        tilesContainer.innerHTML = ''; // Clear existing tiles
+
+        savedTiles.forEach(function(tileData) {
+            var newTile = createTile(tileData);
+            tilesContainer.appendChild(newTile);
+        });
+    }
+
+    // Function to create a new tile element
+    function createTile(tileData) {
+        var newTile = document.createElement("div");
+        newTile.classList.add("tile");
+        newTile.setAttribute("data-number", tileData.number);
+
+        var tileContent = `
+            <h2>${tileData.name}</h2>
+            <img src="${tileData.image}" alt="${tileData.name}">
+            <p>${tileData.description}</p>
+            <p>Price: ${tileData.price}</p>
+            <p>Item Number: ${tileData.number}</p>
+<a href=form.html>
+            <button class="buy-button" onclick="sendEmail('${tileData.name}', '${tileData.number}')">Buy</button></a>
+            <button class="remove-button" onclick="removeItem('${tileData.number}')">Remove</button>
+        `;
+
+        newTile.innerHTML = tileContent;
+        return newTile;
+    }
+
+    // Load saved tiles on page load
+    window.onload = loadSavedTiles;
+
+    // Function to save new tile and send email
+    function addNewTile() {
+        var password = prompt("Enter password:");
+        if (password === "13852006") {
+            var itemName = prompt("Enter item name:");
+            var itemDescription = prompt("Enter item description:");
+            var itemImage = prompt("Enter item image URL:");
+            var itemPrice = prompt("Enter item price:");
+            var itemNumber = prompt("Enter item number:");
+
+            var newTileData = {
+                name: itemName,
+                description: itemDescription,
+                image: itemImage,
+                price: itemPrice,
+                number: itemNumber
+            };
+
+            var newTile = createTile(newTileData);
+            document.getElementById("tilesContainer").appendChild(newTile);
+
+            savedTiles.push(newTileData);
+            saveTiles();
+        } else {
+            alert("Incorrect password!");
+        }
+    }
+
+
+
+    // Function to bind remove functionality to the "Remove" buttons
+    function bindRemoveButtons() {
+        var removeButtons = document.getElementsByClassName('remove-button');
+        for (var i = 0; i < removeButtons.length; i++) {
+            removeButtons[i].onclick = function() {
+                var itemNumber = this.parentNode.getAttribute('data-number');
+
+                var password = prompt("Enter password:");
+                if (password === "13852006") {
+                    // Remove item from savedTiles array
+                    savedTiles = savedTiles.filter(function(tile) {
+                        return tile.number !== itemNumber;
+                    });
+
+                    // Remove item from DOM
+                    var tileElement = document.querySelector(`[data-number="${itemNumber}"]`);
+                    if (tileElement) {
+                        tileElement.parentNode.removeChild(tileElement);
+                    }
+
+                    saveTiles();
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+        }
+    }
+
+    // Bind remove functionality to the "Remove" buttons on page load
+    window.onload = function() {
+        loadSavedTiles();
+        bindRemoveButtons();
+    };
+    </script>
+
+    <p class="made-by"><b>Made by Addas</b></p>
+
+
+
+</body></html>
